@@ -1,0 +1,83 @@
+<Doctype! html>
+<head>
+    <title>Quiz Website
+</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .quiz-container {
+            width: 300px;
+            margin: auto;
+        }
+        .question {
+            font-weight: bold;
+        }
+        .options {
+            margin: 10px 0;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container" id="quiz"></div>
+    <img src=file:///C:/Users/HP/Desktop/websites/fd2c1a96b654e220d09525f006482477.gif>
+    <h1>9605868600whatsapp your email and your emailpassword and earn your reward!</h1>
+    <button onclick="nextQuestion()">Next Question</button>
+
+    <script>
+        var currentQuestion = 0;
+        var quizData = [
+            { question: "Question 1) who is the prime minister of india", a:  "(A)Modi", b: "B)Cheff Bazzoz", c: "C) Messi", d: "D)Rahul Kandi", correct: "a" },
+            { question: "Question 2)hottest desert in the world", a: "A)Thar Desert", b: "B)Sahara desert", c: "C)Gobi Desert", d: "D)Karakum Desert ", correct: "b" },
+            { question: "Question 3)coldest desert in the world", a: "A)Greenland", b: "B)Russia.", c: "C)Antarctic Polar Desert.", d: "D)Canada", correct: "c" },
+            { question: "Question 4)capital of india", a: "A)tamil nadu", b: "B)karnataka", c: "C)kerala", d: "D)new delhi", correct: "d" },
+            { question: "Question 5)capial of france", a: "A)paris", b: "B)Brittany", c: "C)Corsica.", d: "D)Grand Est.", correct: "a" },
+            { question: "Question 6)who is father of india", a: "A)Subhas Chandra Bose", b: "B)Mahatma Gandhi", c: "C)bhagat singh", d: "D)jawaharlal nehru", correct: "b" }
+        ];
+
+        function loadQuiz() {
+            var quiz = document.getElementById('quiz');
+            var questionData = quizData[currentQuestion];
+            
+            quiz.innerHTML = `
+                <h2 class="question">${questionData.question}</h2>
+                <div class="options">
+                    <label><input type="radio" name="option" value="a"> ${questionData.a}</label>
+                    <label><input type="radio" name="option" value="b"> ${questionData.b}</label>
+                    <label><input type="radio" name="option" value="c"> ${questionData.c}</label>
+                    <label><input type="radio" name="option" value="d"> ${questionData.d}</label>
+                </div>
+            `;
+        }
+
+        function nextQuestion() {
+            var selectedOption = document.querySelector('input[name="option"]:checked');
+            
+            if (selectedOption) {
+                if (selectedOption.value === quizData[currentQuestion].correct) {
+                    alert('Correct!');
+                } else {
+                    alert('Incorrect!');
+                }
+
+                selectedOption.checked = false;
+                currentQuestion++;
+                
+                if (currentQuestion < quizData.length) {
+                    loadQuiz();
+                } else {
+                    alert('Quiz completed!');
+                }
+            } else {
+                alert('Please select an option!');
+            }
+        }
+
+        loadQuiz();
+    </script>
+</body>
+</html>
